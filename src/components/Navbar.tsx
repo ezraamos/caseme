@@ -13,9 +13,9 @@ const Navbar = async () => {
     <nav className='sticky z-[100] h-14 inset-x-0 top-0 w-full border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all'>
       <MaxWidthWrapper>
         <div className='flex h-14 items-center justify-between border-b border-zinc-200'>
-          <Link href='/' className='flex z-40 font-semibold'>
+          <Link href='/' className='flex z-40 text-lg font-semibold  '>
             Case
-            <span className='text-[#30D5C8]'>Me</span>
+            <span className='text-[#30D5C8] text-lg'>Me</span>
           </Link>
           <div className='h-full flex items-center space-x-4'>
             {session ? (
@@ -44,7 +44,7 @@ const Navbar = async () => {
                       className: 'hidden sm:flex items-center gap-1',
                     })}
                   >
-                    Create case
+                    Create Case
                     <ArrowRight className='ml-1.5 h-5 w-5' />
                   </Link>
                 )}

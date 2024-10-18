@@ -7,7 +7,7 @@ import { ReactNode } from 'react';
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   const session = await getSession();
-  if (!session) redirect('/');
+  if (!session) redirect('/login');
   return (
     <MaxWidthWrapper className='flex-1 w-full flex flex-col'>
       <Steps />

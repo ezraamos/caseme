@@ -11,12 +11,11 @@ import { useState, useTransition } from 'react';
 import Dropzone, { FileRejection } from 'react-dropzone';
 
 const Page = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const [isDragOver, setIsDragOver] = useState<boolean>(false);
-  // const [uploadProgress, setUploadProgress] = useState<number>(0);
-  const router = useRouter();
 
-  const isUploading = false;
+  const router = useRouter();
 
   const onDropRejected = (rejectedFiles: FileRejection[]) => {
     const [file] = rejectedFiles;
@@ -39,6 +38,7 @@ const Page = () => {
 
   const onDropAccepted = async (acceptedFiles: File[]) => {
     try {
+      setIsLoading(true);
       const formData = new FormData();
 
       acceptedFiles.forEach((file) => {
@@ -46,13 +46,14 @@ const Page = () => {
       });
 
       const { configId } = await uploadFile(formData);
-
+      setIsLoading(false);
       startTransition(() => {
         router.push(`/configure/design?id=${configId}`);
       });
 
       setIsDragOver(false);
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
     }
   };
@@ -90,13 +91,13 @@ const Page = () => {
               <input {...getInputProps()} />
               {isDragOver ? (
                 <MousePointerSquareDashed className='h-6 w-6 text-zinc-500 mb-2' />
-              ) : isUploading || isPending ? (
+              ) : isLoading || isPending ? (
                 <Loader2 className='animate-spin h-6 w-6 text-zinc-500 mb-2' />
               ) : (
                 <Image className='h-6 w-6 text-zinc-500 mb-2' />
               )}
               <div className='flex flex-col justify-center mb-2 text-sm text-zinc-700'>
-                {isUploading ? (
+                {isLoading ? (
                   <div className='flex flex-col items-center'>
                     <p>Uploading...</p>
                     <Progress className='mt-2 w-40 h-2 bg-gray-300' />

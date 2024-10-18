@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Ubuntu } from 'next/font/google';
+import { Almarai } from 'next/font/google';
 import { Toaster } from '@/components/ui/toaster';
 import Providers from '@/components/Providers';
 import { constructMetadata } from '@/lib/utils';
@@ -19,8 +19,8 @@ import { constructMetadata } from '@/lib/utils';
 //   weight: '100 900',
 // });
 
-const recursive = Ubuntu({
-  subsets: ['latin'],
+const recursive = Almarai({
+  subsets: ['arabic'],
   weight: '400',
 });
 
