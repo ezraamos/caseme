@@ -64,6 +64,13 @@ export const createCheckoutSession = async ({
       },
     });
   }
+  console.log('BEFORE', configuration.imageUrl);
+  console.log('ORDER____before', `${serverUrl}/thank-you?orderId=${order.id}`);
+
+  console.log(
+    'CONFIG__ID____before',
+    `${serverUrl}/configure/preview?id=${configuration.id}`
+  );
 
   const product = await stripe.products.create({
     name: 'Custom iPhone Case',
@@ -73,6 +80,13 @@ export const createCheckoutSession = async ({
       unit_amount: price,
     },
   });
+
+  console.log('ORDER____', `${serverUrl}/thank-you?orderId=${order.id}`);
+
+  console.log(
+    'CONFIG__ID____',
+    `${serverUrl}/configure/preview?id=${configuration.id}`
+  );
 
   const stripeSession = await stripe.checkout.sessions.create({
     success_url: `${serverUrl}/thank-you?orderId=${order.id}`,

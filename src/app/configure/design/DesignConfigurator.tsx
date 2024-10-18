@@ -134,7 +134,6 @@ const DesignConfigurator = ({
       const file = new File([blob], `${Date.now()}-${uuidv4()}.png`, {
         type: 'image/png',
       });
-      console.log(file);
       const formData = new FormData();
 
       formData.append('file', file);
@@ -404,9 +403,9 @@ const DesignConfigurator = ({
                 )}
               </p>
               <Button
-                // isLoading={isPending}
+                isLoading={isPending}
                 disabled={isPending}
-                // loadingText='Saving'
+                loadingText='Saving'
                 onClick={() =>
                   saveConfig({
                     configId,
