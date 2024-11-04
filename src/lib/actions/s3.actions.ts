@@ -17,9 +17,11 @@ const uploadFile = async (formData: FormData, configId?: string) => {
   try {
     const files = formData.getAll('file') as File[];
     const file = files[0];
+
+    const fileName = file.name.replace(/\s+/g, '');
     const KEY = configId
-      ? `configured-image/${Date.now()}-${file.name}`
-      : `raw-image/${Date.now()}-${file.name}`;
+      ? `configured-image/${Date.now()}-${fileName}`
+      : `raw-image/${Date.now()}-${fileName}`;
 
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
